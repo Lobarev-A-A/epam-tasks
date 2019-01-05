@@ -1,11 +1,15 @@
+import java.util.ArrayList;
+
+
 public class TaskSix {
     public static void main() {
-
+        
     }
 }
 
 class Notebook {
     private String title;
+    private ArrayList notes = new ArrayList();
 
     public Notebook() {
         setTitle("Without a title");
@@ -28,18 +32,30 @@ class Notebook {
     }
 
     public void addNote(String note) {
-
+        notes.add(new Note(note));
     }
 
     public void removeNote(int index) {
-
+        notes.remove(index);
     }
 
     public void editNote(int index, String note) {
-
+        notes.set(index, new Note(note));
     }
 
     public void showNotes() {
+        System.out.println(getTitle());
+        int l = notes.size();
+        for (int i = 0; i < l; ++i) {
+            System.out.printf("%d.    %s\n", i, notes.get(i));
+        }
+    }
+}
 
+class Note {
+    private String value;
+
+    public Note(String value) {
+        this.value = value;
     }
 }
