@@ -7,7 +7,7 @@ public class TaskFive {
         Scanner consoleInput = new Scanner(System.in);
         do {
             System.out.println("n > 0");
-            n = readn("n = ", consoleInput);
+            n = readN("n = ", consoleInput);
         } while (n <= 0);
 
         int[][] matrix = matrixGenerator(n);
@@ -15,7 +15,7 @@ public class TaskFive {
         printMatrix(matrix);
     }
 
-    public static int readn(String description, Scanner consoleInput) {
+    public static int readN(String description, Scanner consoleInput) {
         System.out.print(description);
         return consoleInput.nextInt();
     }
