@@ -2,17 +2,37 @@ import java.util.ArrayList;
 
 
 public class TaskSix {
-    public static void main() {
-        
+    public static void main(String[] args) {
+        Notebook book = new Notebook();
+        System.out.println("book.showNotes()");
+        book.showNotes();
+        System.out.println("book.setTitle(\"MyNotebook\")");
+        book.setTitle("MyNotebook");
+        System.out.println("book.showNotes()");
+        book.showNotes();
+        System.out.println("book.addNote(\"Купить бананы\")");
+        book.addNote("Купить бананы");
+        System.out.println("book.addNote(\"Купить людей\")");
+        book.addNote("Купить людей");
+        System.out.println("book.showNotes()");
+        book.showNotes();
+        System.out.println("book.removeNote(0)");
+        book.removeNote(0);
+        System.out.println("book.showNotes()");
+        book.showNotes();
+        System.out.println("book.editNote(0, \"Найти работу\")");
+        book.editNote(0, "Найти работу");
+        System.out.println("book.showNotes()");
+        book.showNotes();
     }
 }
 
 class Notebook {
     private String title;
-    private ArrayList notes = new ArrayList();
+    private ArrayList<Note> notes = new ArrayList<>();
 
     public Notebook() {
-        setTitle("Without a title");
+        setTitle("*Without a title*");
     }
 
     public Notebook(String title) {
@@ -20,34 +40,35 @@ class Notebook {
     }
 
     public void setTitle(String title) {
-        if (title == null) {
-            this.title = "no title";
-        } else {
-            this.title = title;
-        }
+        this.title = title;
     }
 
     public String getTitle() {
-        return title;
+        return this.title;
     }
 
     public void addNote(String note) {
-        notes.add(new Note(note));
+        this.notes.add(new Note(note));
     }
 
     public void removeNote(int index) {
-        notes.remove(index);
+        this.notes.remove(index);
     }
 
     public void editNote(int index, String note) {
-        notes.set(index, new Note(note));
+        this.notes.set(index, new Note(note));
     }
 
     public void showNotes() {
         System.out.println(getTitle());
-        int l = notes.size();
-        for (int i = 0; i < l; ++i) {
-            System.out.printf("%d.    %s\n", i, notes.get(i));
+
+        int l = this.notes.size();
+        if (l == 0) {
+            System.out.println("*Empty notebook*");
+        } else {
+            for (int i = 0; i < l; ++i) {
+                System.out.printf("%d.  %s\n", i, this.notes.get(i).getNote());
+            }
         }
     }
 }
@@ -57,5 +78,9 @@ class Note {
 
     public Note(String value) {
         this.value = value;
+    }
+
+    public String getNote() {
+        return this.value;
     }
 }
