@@ -11,15 +11,10 @@ public class TaskFour {
 
         double[] array = new double[2 * n];
         for (int i = 0; i < 2 * n; ++i) {
-            array[i] = readDouble(consoleInput);
+            array[i] = consoleInput.nextDouble();
         }
 
-        double[] sumArray = new double[n];
-        for (int i = 0; i < n; ++i) {
-            sumArray[i] = array[i] + array[2 * n - 1 - i];
-        }
-
-        System.out.printf("max(a1 + a2n, a2 + a2n-1,..., an + an+1) = %f", maxOfArray(sumArray));
+        System.out.printf("max(a1 + a2n, a2 + a2n-1,..., an + an+1) = %f", maxOfPairSum(array));
     }
 
     public static int readN(String description, Scanner consoleInput) {
@@ -27,20 +22,15 @@ public class TaskFour {
         return consoleInput.nextInt();
     }
 
-    public static double readDouble(Scanner consoleInput) {
-        return consoleInput.nextDouble();
-    }
-
-    public static double maxOfArray(double[] array) {
-        // One Bubble sort iteration
+    public static double maxOfPairSum(double[] array) {
         int l = array.length;
-        for (int i = 0; i < l - 1; ++i) {
-            if (array[i] > array[i + 1]) {
-                array[i] += array [i + 1];
-                array[i + 1] = array[i] - array[i + 1];
-                array[i] -= array [i + 1];
-            }
+        int hl = l / 2;
+        double outputMax = array[0] + array[l - 1];
+        double pairSum;
+        for (int i = 1; i < hl; ++i) {
+            pairSum = array[i] + array[l - 1 - i];
+            outputMax = (pairSum > outputMax) ? pairSum : outputMax;
         }
-        return array[array.length - 1];
+        return outputMax;
     }
 }
